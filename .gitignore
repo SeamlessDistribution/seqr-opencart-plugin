@@ -1,3 +1,5 @@
+
+*.iml
 .htaccess
 /config.php
 admin/config.php
