@@ -8,7 +8,7 @@
         };
     </script>
 
-    <?php if ($qr_code) { ?>
+    <?php if (isset ($qr_code)) { ?>
         <script id="seqrShop"
                 src="https://cdn.seqr.com/webshop-plugin/js/seqrShop.js#!mode=demo&injectCSS=false&statusCallback=statusUpdated&invoiceQRCode=<?php echo urlencode($qr_code); ?>&statusURL=<?php echo urlencode($url_poll); ?>">
         </script>
