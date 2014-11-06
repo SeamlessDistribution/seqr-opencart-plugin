@@ -24,19 +24,16 @@ class ControllerPaymentSeqr extends Controller {
         $this->load->model('checkout/order');
         $this->load->model('payment/seqr_api');
 
-        if (array_key_exists('seqr', $this->session->data)
-            && $this->session->data['seqr']->status == 'CANCELED') {
+        @$order = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+        $seqr = json_decode($order['payment_custom_field']);
 
-            $this->model_payment_seqr_api->cancelInvoice();
-        }
-
+        if ($seqr && $seqr->status == 'CANCELED') $this->model_payment_seqr_api->cancelInvoice();
         $result = $this->model_payment_seqr_api->sendInvoice();
 
         if ($result) {
             $result->version = 0;
             $result->status = 'ISSUED';
 
-            @$order = $this->model_checkout_order->getOrder($this->session->data['order_id']);
             $order['payment_custom_field'] = json_encode($result);
             @$this->model_checkout_order->editOrder($this->session->data['order_id'], $order);
 
