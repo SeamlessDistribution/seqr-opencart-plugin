@@ -79,7 +79,7 @@ class ControllerPaymentSeqr extends Controller {
         $this->updateOrder($this->session->data['order_id'], $seqr);
 
         ob_clean();
-        echo @json_encode($sseqr);
+        echo @json_encode($seqr);
         exit;
     }
 
