@@ -1,4 +1,4 @@
-SEQR Opencart 2.0 Plugin
+SEQR Opencart 2.x Plugin
 ===================
 
 ### SEQR ###
@@ -39,6 +39,9 @@ Paid order and cancelled order statuses, used to marking orders in Opencart (It 
 Title is shown as option of payment method in checkout process. 
 
 All properties are required and should be configured before enabling this payment method in production.
+
+### Tested with ###
+* Openacart 2.0
 
 ### Development & File structure ###
 
