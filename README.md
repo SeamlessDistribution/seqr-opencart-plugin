@@ -41,7 +41,7 @@ Title is shown as option of payment method in checkout process.
 All properties are required and should be configured before enabling this payment method in production.
 
 ### Tested with ###
-* Openacart 2.0
+* Openacart 2.0.0.0 [October 1, 2014]
 
 ### Development & File structure ###
 
