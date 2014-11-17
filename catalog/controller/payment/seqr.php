@@ -40,6 +40,7 @@ class ControllerPaymentSeqr extends Controller {
             $order['payment_custom_field'] = json_encode($result);
             @$this->model_checkout_order->editOrder($this->session->data['order_id'], $order);
 
+            $data['test'] = $this->config->get('seqr_user_id');
             $data['qr_code'] = $result->invoiceQRCode;
             $data['reference'] = $result->invoiceReference;
         }
@@ -82,7 +83,7 @@ class ControllerPaymentSeqr extends Controller {
         $this->updateOrder($this->session->data['order_id'], $seqr);
 
         ob_clean();
-        echo json_encode($this->session->data['seqr']);
+        echo @json_encode($seqr);
         exit;
     }
 

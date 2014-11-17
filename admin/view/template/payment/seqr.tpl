@@ -47,6 +47,25 @@
                 <form  id="form-seqr-uk" class="form-horizontal" action="<?php echo $action; ?>"
                        method="post" enctype="multipart/form-data">
 
+                    <!-- User ID -->
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="seqr-terminal-id">
+                            <?php echo $msg_seqr_user_id; ?>
+                        </label>
+
+                        <div class="col-sm-10">
+                            <input id="seqr-user-id" class="form-control" type="text" name="seqr_user_id"
+                                   value="<?php echo $seqr_user_id; ?>"
+                                   placeholder="<?php echo $msg_seqr_user_id; ?>" />
+
+                            <?php if (isset($error['seqr_user_id'])) { ?>
+                                <div class="text-danger">
+                                    <?php echo $error['seqr_user_id']; ?>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+
                     <!-- Terminal ID -->
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="seqr-terminal-id">
