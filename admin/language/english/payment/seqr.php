@@ -10,6 +10,7 @@ $_['text_seqr'] = '<a target="_blank" href="http://developer.seqr.com/merchant/w
 
 // Entry
 $_['seqr_soap_wsdl_url'] = 'URI to WSDL';
+$_['seqr_user_id'] = 'User ID';
 $_['seqr_terminal_id'] = 'Terminal ID';
 $_['seqr_terminal_password'] = 'Terminal Password';
 

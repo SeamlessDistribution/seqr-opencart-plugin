@@ -21,7 +21,7 @@ class ControllerPaymentSeqr extends Controller {
         // Load messages
         $messages = array('heading_title', 'text_edit', 'text_enabled', 'text_disabled','text_yes', 'text_no',
             'seqr_soap_wsdl_url', 'seqr_terminal_id', 'seqr_terminal_password', 'entry_test', 'seqr_order_status_paid',
-            'seqr_order_status_canceled', 'seqr_status', 'button_save', 'button_cancel');
+            'seqr_user_id', 'seqr_order_status_canceled', 'seqr_status', 'button_save', 'button_cancel');
         foreach ($messages as $code) $data['msg_' . $code] = $this->language->get($code);
 
         // Prepare navigation
@@ -50,7 +50,7 @@ class ControllerPaymentSeqr extends Controller {
 
         // Load properties from request (or configuration)
         $properties = array('seqr_terminal_id', 'seqr_terminal_password', 'seqr_test', 'seqr_order_status_paid',
-            'seqr_order_status_canceled', 'seqr_soap_wsdl_url', 'seqr_status');
+            'seqr_user_id', 'seqr_order_status_canceled', 'seqr_soap_wsdl_url', 'seqr_status');
         foreach ($properties as $key) $data[$key] = $this->requestOrConfig($key);
 
         $this->load->model('localisation/order_status');

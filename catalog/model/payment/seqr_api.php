@@ -69,7 +69,7 @@ class ModelPaymentSeqrApi extends Model {
             'initiatorPrincipalId' => array(
                 'id' => $this->config->get('seqr_terminal_id'),
                 'type' => 'TERMINALID',
-                'userId' => 9900
+                'userId' => $this->config->get('seqr_user_id')
             ),
             'password' => $this->config->get('seqr_terminal_password'),
             'clientRequestTimeout' => '0'
