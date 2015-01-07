@@ -11,7 +11,7 @@
 
     <?php if (isset($qr_code)) { ?>
         <script id="seqrShop"
-                src="/seqr/js/seqrShop.js#!<?php echo ($test ? 'mode=demo&' : ''); ?>injectCSS=false&statusCallback=statusUpdated&invoiceQRCode=<?php echo urlencode($qr_code); ?>&statusURL=<?php echo urlencode($url_poll); ?>">
+                src="/seqr/js/seqrShop.js#!<?php echo ($test ? 'mode=demo&' : ''); ?>injectCSS=false&statusCallback=statusUpdated&invoiceQRCode=<?php echo $qr_code; ?>&statusURL=<?php echo $url_poll; ?>">
         </script>
     <?php } else
         echo "<h1 style=\"text-align: center;\">{$text_unavailable}</h1>";
