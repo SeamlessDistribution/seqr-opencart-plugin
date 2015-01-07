@@ -39,9 +39,7 @@ class ModelPaymentSeqrApi extends Model {
         }
     }
 
-    public function cancelInvoice() {
-        $ref = $this->session->data['seqr']->invoiceReference;
-
+    public function cancelInvoice($ref) {
         try {
             $SOAP = $this->SOAP();
             $result = $SOAP->cancelInvoice(array(
