@@ -2,13 +2,14 @@ web:
   image: grzegorzwodo/seqr-ecommerce-base:PHP5_6
   ports:
     - "8080:80"
-    - "83306:3306"
+    - "13306:3306"
   volumes_from:
     - web-data
 web-data:
   image: grzegorzwodo/ecommerce-opencart-data
   environment:
     PLUGIN_NAME: 'seqr'
-    PS_VERSION: '2.1.0.1'
-#  volumes:
-#    - ./seqr:/var/www/html/modules/seqr
+    OC_VERSION: '2.1.0.1'
+  volumes:
+    - ./admin:/var/www/html/plugin/seqr/admin
+    - ./catalog:/var/www/html/plugin/seqr/catalog
