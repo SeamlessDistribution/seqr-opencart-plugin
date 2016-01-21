@@ -13,3 +13,12 @@ web-data:
   volumes:
     - ./admin:/var/www/html/plugin/seqr/admin
     - ./catalog:/var/www/html/plugin/seqr/catalog
+    - ./admin/controller/payment/seqr.php:/var/www/html/upload/admin/controller/payment/seqr.php
+    - ./admin/language/english/payment/seqr.php:/var/www/html/upload/admin/language/english/payment/seqr.php
+    - ./admin/view/template/payment/seqr.tpl:/var/www/html/upload/admin/view/template/payment/seqr.tpl
+    - ./catalog/controller/payment/seqr.php:/var/www/html/upload/catalog/controller/payment/seqr.php
+    - ./catalog/language/english/payment/seqr.php:/var/www/html/upload/catalog/language/english/payment/seqr.php
+    - ./catalog/model/payment/seqr.php:/var/www/html/upload/catalog/model/payment/seqr.php
+    - ./catalog/model/payment/seqr_api.php:/var/www/html/upload/catalog/model/payment/seqr_api.php
+    - ./catalog/view/theme/default/template/payment/seqr.tpl:/var/www/html/upload/catalog/view/theme/default/template/payment/seqr.tpl
+
