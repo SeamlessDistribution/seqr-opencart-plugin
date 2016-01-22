@@ -21,4 +21,6 @@ web-data:
     - ./catalog/model/payment/seqr.php:/var/www/html/upload/catalog/model/payment/seqr.php
     - ./catalog/model/payment/seqr_api.php:/var/www/html/upload/catalog/model/payment/seqr_api.php
     - ./catalog/view/theme/default/template/payment/seqr.tpl:/var/www/html/upload/catalog/view/theme/default/template/payment/seqr.tpl
-
+    - ./admin/controller/payment/seqr_refund.php:/var/www/html/upload/admin/controller/payment/seqr_refund.php
+    - ./admin/view/template/payment/seqr_refund.tpl:/var/www/html/upload/admin/view/template/payment/seqr_refund.tpl
+    - ./admin/language/english/payment/seqr_refund.php:/var/www/html/upload/admin/language/english/payment/seqr_refund.php

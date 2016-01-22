@@ -121,7 +121,7 @@ class ModelPaymentSeqrApi extends Model {
 
             $invoice['invoiceRows'][] = array(
                 'itemDescription' => $item['name'],
-                'itemSKU' => $item['key'],
+                //'itemSKU' => $item['key'],
                 'itemTaxRate' => (empty($rates) ? 0 : array_sum($rates)),
                 'itemQuantity' => $item['quantity'],
                 'itemUnitPrice' > array(
