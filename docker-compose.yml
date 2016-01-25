@@ -24,3 +24,4 @@ web-data:
     - ./admin/controller/payment/seqr_refund.php:/var/www/html/upload/admin/controller/payment/seqr_refund.php
     - ./admin/view/template/payment/seqr_refund.tpl:/var/www/html/upload/admin/view/template/payment/seqr_refund.tpl
     - ./admin/language/english/payment/seqr_refund.php:/var/www/html/upload/admin/language/english/payment/seqr_refund.php
+    - ./admin/model/payment/seqr_refund.php:/var/www/html/upload/admin/model/payment/seqr_refund.php
