@@ -87,8 +87,8 @@ class ControllerPaymentSeqr extends Controller {
 
         $seqr->version = $result->version;
         $seqr->status = $result->status;
-
-        $this->save($this->session->data['order_id'], $seqr);
+        print_r($result->ersReference);
+        $this->save($this->session->data['order_id'], $seqr, $result->ersReference);
         $this->updateOrder($this->session->data['order_id'], $seqr);
 
         ob_clean();
@@ -113,7 +113,7 @@ class ControllerPaymentSeqr extends Controller {
         $seqr->version = $result->version;
         $seqr->status = $result->status;
 
-        $this->save($this->session->data['order_id'], $seqr);
+        $this->save($this->session->data['order_id'], $seqr, $result->ersReference);
         $this->updateOrder($this->session->data['order_id'], $seqr);
 
         ob_clean();
@@ -134,7 +134,7 @@ class ControllerPaymentSeqr extends Controller {
         $seqr->version = $result->version;
         $seqr->status = $result->status;
 
-        $this->save($this->session->data['order_id'], $seqr);
+        $this->save($this->session->data['order_id'], $seqr, $result->ersReference);
         $this->updateOrder($this->session->data['order_id'], $seqr);
 
         if (! in_array($seqr->status, array('CANCELED', 'PAID'))) $this->notFound();
@@ -160,7 +160,7 @@ class ControllerPaymentSeqr extends Controller {
         exit;
     }
 
-    private function save($order_id, $data) {
+    private function save($order_id, $data, $ers_reference = '') {
         if (! $order_id || ! $data) return;
 
         $check_result = $this->db->query("SELECT order_id FROM {$this->dbTable} WHERE order_id = '{$this->db->escape($order_id)}'");
@@ -171,7 +171,7 @@ class ControllerPaymentSeqr extends Controller {
             return;
         }
 
-        $this->db->query("UPDATE {$this->dbTable} SET json_data = '{$this->db->escape($data_json)}' WHERE order_id = {$this->db->escape($order_id)}");
+        $this->db->query("UPDATE {$this->dbTable} SET json_data = '{$this->db->escape($data_json)}', ers_reference = '{$this->db->escape($ers_reference)}' WHERE order_id = {$this->db->escape($order_id)}");
     }
 
     private function read($order_id) {
@@ -184,10 +184,12 @@ class ControllerPaymentSeqr extends Controller {
     }
 
     private function install() {
+    	$this->db->query("DROP TABLES IF EXISTS {$this->dbTable} ");
         $this->db->query("CREATE TABLE IF NOT EXISTS {$this->dbTable} (
             order_id int(11) NOT NULL,
             json_data VARCHAR(225) NOT NULL,
-
+            refund decimal(15,4) default 0,
+            ers_reference VARCHAR(225),
             PRIMARY KEY (order_id)
         )");
     }

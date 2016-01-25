@@ -47,7 +47,7 @@
                 <form  id="form-seqr-uk" class="form-horizontal" action="<?php echo $action; ?>"
                        method="post" enctype="multipart/form-data">
 
-          
+          		 <?php print_r($data['seqr_order']) ?>
                 </form>
             </div>
         </div>

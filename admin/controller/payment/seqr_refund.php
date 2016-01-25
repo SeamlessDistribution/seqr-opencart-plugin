@@ -34,6 +34,11 @@ class ControllerPaymentSeqrRefund extends Controller {
         		)
         );
         
+        
+        $this->load->model('payment/seqr_refund');
+        $data['seqr_order'] = $this->model_payment_seqr_refund->getSeqrOrders();
+        
+        
         // Prepare output
         $data['header'] = $this->load->controller('common/header');
         $data['column_left'] = $this->load->controller('common/column_left');
