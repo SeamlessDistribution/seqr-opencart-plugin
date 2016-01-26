@@ -8,6 +8,7 @@ $_['text_edit'] = 'Edit SEQR Refund';
 $_['seqr_logo'] = '<img src="https://cdn.seqr.com/webshop-plugin/images/seqr-logo.svg" style="width: 150px" />';
 $_['text_seqr'] = '<a target="_blank" href="http://developer.seqr.com/merchant/webshop/">' . $_['seqr_logo'] . '</a>';
 $_['text_payment'] = 'Payments';
+$_['ok_refund_success'] = 'Success: Refund has been updated.';
 
 // Entry
 $_['seqr_soap_wsdl_url'] = 'URI to WSDL';
@@ -31,3 +32,6 @@ $_['error_seqr_terminal_id'] = 'Terminal identifier required!';
 $_['error_seqr_terminal_password'] = 'Terminal password required!';
 $_['error_seqr_soap_wsdl_url'] = 'SOAP WSDL url required!';
 $_['error_seqr_wsdl_unavailable'] = 'SOAP WSDL is unavailable!';
+
+$_['error_seqr_refund_greater_then_total_cost'] = 'Amount refunded must be greater than 0 and smaller than or equal to order value!';
+$_['error_seqr_refund_failed'] = 'Refund failed!';
