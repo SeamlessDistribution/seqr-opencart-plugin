@@ -7,7 +7,6 @@ class ControllerPaymentSeqrRefund extends Controller {
     	$this->document->setTitle($this->language->get('heading_title'));
     	$this->load->model('setting/setting');
     	
-        
         $messages = array('heading_title', 'text_edit', 'text_enabled', 'text_disabled','text_yes', 'text_no',
         		'seqr_soap_wsdl_url', 'seqr_terminal_id', 'seqr_terminal_password', 'entry_test', 'seqr_order_status_paid',
         		'seqr_user_id', 'seqr_order_status_canceled', 'seqr_status', 'button_save', 'button_cancel');
@@ -36,7 +35,20 @@ class ControllerPaymentSeqrRefund extends Controller {
         
         
         $this->load->model('payment/seqr_refund');
+        $this->load->model('payment/seqr_api');
+        if(isset($_POST['order_id'])) {
+        	$seqrOrder = $this->model_payment_seqr_refund->getSeqrOrder($_POST['order_id']);
+        	if(($_POST['return'] + $seqrOrder['refund']) <= $seqrOrder['total']) {
+        		$this->model_payment_seqr_refund->createRefund($_POST['order_id'], $_POST['return'] + $seqrOrder['refund']);
+        		$this->model_payment_seqr_api->refundPayment($seqrOrder['ers_reference'], $_POST['return'], $seqrOrder['currency_code']);
+        		$data['ok'] = $this->language->get("ok_refund_success");
+        	} else {
+        		$data['error'] = $this->language->get("error_seqr_refund_greater_then_total_cost");
+        	}
+        }
+        
         $data['seqr_order'] = $this->model_payment_seqr_refund->getSeqrOrders();
+        
         
         
         // Prepare output

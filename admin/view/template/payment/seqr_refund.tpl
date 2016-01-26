@@ -82,6 +82,16 @@
                 <h3 class="panel-title"><i class="fa fa-pencil"></i> <?php echo $msg_text_edit; ?></h3>
             </div>
             
+           	  <?php if(isset($data['ok'])) { ?>
+	              <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $data['ok']; ?>
+				      <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  </div>
+			  <?php } ?>
+			  <?php if(isset($data['error'])) { ?>
+				  <div class="alert alert-danger"><i class="fa fa-check-circle"></i> <?php echo $data['error']; ?>
+				      <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  </div>
+              <?php } ?>
             <div class="panel-body">
                 <form  id="form-seqr-uk" class="form-horizontal" action="<?php echo $action; ?>"
                        method="post" enctype="multipart/form-data">
