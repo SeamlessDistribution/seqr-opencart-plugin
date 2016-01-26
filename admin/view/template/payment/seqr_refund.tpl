@@ -83,13 +83,10 @@
                 <form  id="form-seqr-uk" class="form-horizontal" action="<?php echo $action; ?>"
                        method="post" enctype="multipart/form-data">
 
-          		 <?php print_r($data['seqr_order']) ?>
+          		           <?php print_r($data['seqr_order']) ?>
                 </form>
 
                 <div class="panel">
-                    <div class="panel-heading">
-                        SEQR Payments
-                    </div>
                     <div class="table">
                         <div class="table-header">
                             <div>Id</div>
@@ -101,27 +98,27 @@
                             <div>Action</div>
 
                         </div>
-                        <?php foreach ($seqrPayments as $row) { ?>
-                            <form method="post" id="{$row['id_order']}_form" action="{$link->getAdminLink('SeqrRefunds',true)|escape:'html':'UTF-8'}">
+                        <?php foreach ($data['seqr_order'] as $row) { ?>
+                            <form method="post" id="<?php echo $row['order_id'] . '_form' ?>" action="">
                                 <div>
-                                    <a href="<?php $row['order_link'] ?>"><?php $row['id_order'] ?></a>
-                                    <input type="hidden" name="id_order" value="{$row['id_order']}"/>
+                                    <a href="<?php echo $row['order_id'] ?>"><?php echo $row['order_id'] ?></a>
+                                    <input type="hidden" name="order_id" value="<?php echo $row['order_id'] ?>"/>
                                 </div>
-                                <div id="{$row['id_order']}_customer_name"><?php $row['customerName'] ?></div>
-                                <div id="{$row['id_order']}_total"><?php $row['total_paid'] ?></div>
-                                <div id="{$row['id_order']}_shipping"><?php $row['shipping_cost'] ?></div>
-                                <div id="{$row['id_order']}_returned"><?php $row['returned'] ?></div>
+                                <div id="<?php echo $row['order_id'] . '_customer_name' ?>"><?php echo $row['customerName'] ?></div>
+                                <div id="<?php echo $row['order_id'] . '_total' ?>"><?php echo $row['total'] ?></div>
+                                <div id="<?php echo $row['order_id'] . 'shipping' ?>"><?php echo $row['refund'] ?></div>
+                                <div id="<?php echo $row['order_id'] . '_returned' ?>"><?php echo $row['refund'] ?></div>
                                 <div>
-                                    <?php if($row['total_paid'] - $row['returned'] == 0) { ?>
+                                    <?php if($row['total'] - $row['refund'] == 0) { ?>
                                     	Fully refunded
                                     <?php } else { ?>
-                                    	<input id="{$row['id_order']}_to_return" name="return" type="number" step="0.01" min="0"
-                                           max="{$row['total_paid'] - $row['returned']}" value="{$row['suggested_return']}"/>
+                                    	<input id="<?php echo $row['order_id'] . '_to_return' ?>" name="return" type="number" step="0.01" min="0"
+                                           max="<?php echo ($row['total'] - $row['refund']) ?>" value="<?php echo $row['suggested_return'] ?>"/>
                                     <?php } ?>
                                 </div>
                                 <div>
-                                    <?php if ($row['total_paid'] - $row['returned'] != 0) { ?>
-                                        <input class="button btn btn-default button-medium" type="button" value="Refund" onclick="window.refund.selectRefund({$row['id_order']})" />
+                                    <?php if ($row['total'] - $row['refund'] != 0) { ?>
+                                        <input class="button btn btn-default button-medium" type="button" value="Refund" onclick="window.refund.selectRefund(<?php echo $row['order_id'] ?>)" />
                                     <?php } ?>
                                 </div>
                             </form>
