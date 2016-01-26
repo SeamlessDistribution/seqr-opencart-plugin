@@ -10,7 +10,7 @@ class ModelPaymentSeqrRefund extends Model {
 		foreach ($result->rows as $row) {
 			$shippingCost = $this->db->query("select SUM(value) shipping from oc_order_total where code ='shipping' and order_id = " . $row['order_id']);
 			$row['shipping'] = $shippingCost->row['shipping'];
-			$row['suggested_return'] = $row['total'] - $row['return'] - $row['shipping'];
+			$row['suggested_return'] = $row['total'] - $row['refund'] - $row['shipping'];
 			array_push($refunds, $row);
 		}
 		return $refunds;
