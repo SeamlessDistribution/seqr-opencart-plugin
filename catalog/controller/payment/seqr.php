@@ -184,7 +184,6 @@ class ControllerPaymentSeqr extends Controller {
     }
 
     private function install() {
-    	$this->db->query("DROP TABLES IF EXISTS {$this->dbTable} ");
         $this->db->query("CREATE TABLE IF NOT EXISTS {$this->dbTable} (
             order_id int(11) NOT NULL,
             json_data VARCHAR(225) NOT NULL,
@@ -192,5 +191,12 @@ class ControllerPaymentSeqr extends Controller {
             ers_reference VARCHAR(225),
             PRIMARY KEY (order_id)
         )");
+        
+        $result = $this->db->query("Show columns from {$this->dbTable} like 'ers_reference'");
+        
+        if($result->num_rows == 0) {	
+        	$this->db->query("ALTER TABLE {$this->dbTable} ADD refund decimal(15,4) default 0");
+        	$this->db->query("ALTER TABLE {$this->dbTable} ADD ers_reference VARCHAR(225)");
+        }
     }
 }
