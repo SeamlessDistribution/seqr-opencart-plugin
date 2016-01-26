@@ -156,6 +156,36 @@ class ModelPaymentSeqrApi extends Model {
         return $invoice;
     }
 
+    public function refundPayment($ersReference, $amount, $currencyCode) {
+
+    	try {
+    		$SOAP = $this->SOAP();
+    		$invoice = $this->createRefundInvoice($amount, $currencyCode);
+    		$result = $SOAP->refundPayment(array(
+    				'context' => $this->getRequestContext(),
+    				'ersReference' => $ersReference,
+    				'invoice' => $invoice
+    		))->return;
+
+    		if ($result->resultCode != 0) throw new Exception($result->resultCode . " : " . $result->resultDescription);
+
+    		return $result;
+    	} catch(Exception $e) {
+    		throw new Exception("SEQR API - Refund payment error");
+    	}
+    }
+
+    private function createRefundInvoice($amount, $currencyCode) {
+    	return array(
+	            'title' => "SEQR refund",
+	            'totalAmount' => array(
+	                'currency' => $currencyCode,
+	                'value' => $this->toFloat($amount)
+	            ),
+        		'cashierId' => 'WEB'
+    	);
+    }
+
     public function toFloat($number) {
         return number_format((float) $number, 2, '.', '');
     }
