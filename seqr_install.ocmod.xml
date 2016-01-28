@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <code>seqr_refund</code>
+    <name>SEQR Refund Menu link</name>
+    <version>1.0</version>
+    <author>Kamil Manka</author>
+    <link>http://seqr.com</link>
+    <file path="admin/view/template/common/menu.tpl">
+        <operation>
+            <search trim="true"><![CDATA[
+            <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
+            ]]>
+            </search>
+            <add position="after"><![CDATA[
+             <li><a href="<?php echo $seqr_refund_link ?>"><?php echo $seqr_refund_text ?></a></li>
+            ]]>
+            </add>
+        </operation>
+    </file>
+    <file path="admin/controller/common/menu.php">
+        <operation>
+            <search trim="true"><![CDATA[
+            $data['text_analytics'] = $this->language->get('text_analytics');
+            ]]>
+            </search>
+            <add position="after"><![CDATA[
+             $data['seqr_refund_link'] = $this->url->link('payment/seqr_refund', 'token=' . $this->session->data['token'], 'SSL');
+             $data['seqr_refund_text'] = "SEQR Refund";
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+</modification>
