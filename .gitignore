@@ -28,3 +28,6 @@ image/data/
 image/cache/
 system/cache/
 system/logs/
+
+# Build
+target/
