@@ -5,6 +5,12 @@ web:
     - "13306:3306"
   volumes_from:
     - web-data
+  links:
+    - ftp
+ftp:
+  image: damienlagae/ftp
+  volumes_from:
+    - web-data
 web-data:
   image: grzegorzwodo/ecommerce-opencart-data
   environment:
